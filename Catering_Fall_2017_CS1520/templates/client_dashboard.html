@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+	<h1 style="font-size: 40px;">Dashboard:</h1>
+
+	<div style="margin: 0px 0px 0px 30px;">
+		<h2>When would you like to schedule your event?</h2>
+
+		{% if error %}
+			<div class="error"> {{ error }}</div>
+		{% endif %}
+
+		<form action="" method="post" name="schedule">
+			{{ sched.csrf_token() }}
+			<dl>
+				<dt><b>Select Date:</b>
+					<dd>{{ sched.date }}</dd>
+					<dd>{{ sched.submit }}</dd>
+				</dt>
+			</dl>
+		</form>
+	</div>
+
+	<div style="margin: 0px 0px 0px 30px;">
+		<h2><b>Scheduled Events:</b></h2>
+
+		{% if alert %}
+			<div class="alert"> {{ alert }}</div>
+		{% endif %}
+
+		{% for event in events %}
+			<span>
+				<ul>
+					{% if event.client_id == id %}
+						<li><h3><b>Event on {{ event.event_date }}:</b></h3></li>
+						<form action="" method="post" style="margin: -20px 0px -10px 20px;">
+							{{ cancl.csrf_token() }} 
+							{{ cancl.date(value=event.event_id) }}
+							{{ cancl.cancel }}
+						</form>
+					{% endif %}
+				</ul>
+			</span>
+		{% else %}
+			<em>There are no event's scheduled.</em>
+		{% endfor %}
+	</div>
+{% endblock %}

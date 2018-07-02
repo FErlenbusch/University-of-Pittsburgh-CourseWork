@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{% if title %}
+		<title>{{ title }} - The Budgeter</title>
+		{% else %}
+		<title>Welcome to The Budgeter</title>
+		{% endif %}
+		<link rel='stylesheet' type='text/css' href="{{ url_for('static',filename='styles/style.css') }}">
+	</head>
+	
+	<body>
+		{% if title != 'Login' and title != 'Register' %}
+		<div>
+			<b style="font-size: 25px;">Chatty Cathy:</b>
+			<a style="font-size: 20px; margin: 10px;" href="/login">Home</a> 
+			<a style="font-size: 20px; margin: 10px;" href="/logout">Logout</a>
+		</div>
+		<hr>
+		{% endif %} 
+
+		{% block content %}{% endblock %}
+
+		<br />
+		{% with messages = get_flashed_messages() %}
+			{% if messages %}
+				<div class=flashes>
+			{% for message in messages %}
+				<p style="margin: 30px;">{{ message }}</p>
+			{% endfor %}
+				</div>
+  			{% endif %}
+		{% endwith %}
+
+	</body>
+</html>

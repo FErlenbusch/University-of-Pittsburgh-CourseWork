@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>Welcome to Chatty Cathy!</h2>
+
+    <h3>Chatrooms to Join:</h3>
+    {% for room in rooms %}
+        <b style="margin: 15px; font-size: 17px;">{{ room.name }}</b> <a href="{{ url_for('chatroom', chat_id=room.chat_id) }}">Enter Chatroom</a> 
+       
+        {% if user == room.owner %}
+            <form action="" method="post" style="margin: 0px 0px 0px 40px;">
+                {{ delete.csrf_token() }} 
+                {{ delete.delete(value=room.chat_id) }}
+                {{ delete.cancel }}
+            </form>
+        {% endif %}
+
+      <br />
+    {% else %}
+        <h4 style="margin: 30px;">No Available Chatrooms.</h4>
+    {% endfor %}
+
+    {% if error %}<div class="error"><strong>Error:</strong> {{ error }}</div>
+    {% endif %}
+    <h3>Create a Chatroom</h3>
+    <form method="post" action="">
+        <input type="text" name="name"> <br />
+        <button type="submit">Create Room</button>
+    </form>
+{% endblock %}

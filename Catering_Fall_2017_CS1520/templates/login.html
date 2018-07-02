@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>Welcome to The Caterers!</h2>
+    <h3>Please Log in to Continue:</h3>
+
+    {% if error %}<div class="error"><strong>Error:</strong> {{ error }}</div>{% endif %}
+   
+    <form action="" method="post">
+        <dl>
+            <dt>Username:
+            	<dd><input type="text" name="user" /></dd>
+            </dt>
+            <dt>Password:
+            	<dd><input type="password" name="password" /></dd>
+            </dt>
+        </dl>
+        <div><input type="submit" value="Log In" /><div>
+    </form>
+    <br />
+    
+    <form action="/register_client">
+        <input type="submit" value="Register" />
+    </form>
+{% endblock %}

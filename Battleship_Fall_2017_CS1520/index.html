@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Fred Erlenbusch Assignment 2 (BattleShip)</title>
+		<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+		<link href="css/style.css" rel="stylesheet" type="text/css">
+		<script type="text/javascript" src="battleship.js">
+		</script>
+	</head>
+  	
+  	<body>
+  		<h1 id="head1"> Battleship! </h1>
+  		<h3 id="head2"> by Fred Erlenbusch </h3>
+
+		<h2 id="userDisp"> Enter Player 1's name:</h2>
+
+    	<form  id="userIn" onsubmit="event.preventDefault(); enterName();">
+    		<input type="text" id="userInText" width="350">
+    		<input type="submit" id="inButton" value="Submit">
+    	</form>
+    	<form id="theButton" onsubmit="event.preventDefault(); transition();">
+    		<input type="submit" id="theRealButton" value="Ok">
+    	</form>
+
+		<h3 id="syntaxDesc"></h3>
+
+  		<table id="playSet">
+			<tr>
+			    <th> Opponent's Board </th>
+			    <th id="topScores"> Top Scores </th>
+			</tr>
+		  	<tr>
+		  		<th>
+			    	<table id="gameBoard2">
+			    		<tr id="2Row0">
+			    			<th></th>
+			    			<th>1</th>
+			    			<th>2</th>
+			    			<th>3</th>
+			    			<th>4</th>
+			    			<th>5</th>
+			    			<th>6</th>
+			    			<th>7</th>
+			    			<th>8</th>
+			    			<th>9</th>
+			    			<th>10</th>
+			    		</tr>
+			    		<tr id="2Row1">
+			    			<th>A</th>
+			    			<td id="2A1"><button class="playButton" onclick="playGame('A1')"></button></td>
+			    			<td id="2A2"><button class="playButton" onclick="playGame('A2')"></button></td>
+			    			<td id="2A3"><button class="playButton" onclick="playGame('A3')"></button></td>
+			    			<td id="2A4"><button class="playButton" onclick="playGame('A4')"></button></td>
+			    			<td id="2A5"><button class="playButton" onclick="playGame('A5')"></button></td>
+			    			<td id="2A6"><button class="playButton" onclick="playGame('A6')"></button></td>
+			    			<td id="2A7"><button class="playButton" onclick="playGame('A7')"></button></td>
+			    			<td id="2A8"><button class="playButton" onclick="playGame('A8')"></button></td>
+			    			<td id="2A9"><button class="playButton" onclick="playGame('A9')"></button></td>
+			    			<td id="2A10"><button class="playButton" onclick="playGame('A10')"></button></td>
+			    		</tr>
+			    		<tr id="Row2">
+			    			<th>B</th>
+							<td id="2B1"><button class="playButton" onclick="playGame('B1')"></button></td>
+			    			<td id="2B2"><button class="playButton" onclick="playGame('B2')"></button></td>
+			    			<td id="2B3"><button class="playButton" onclick="playGame('B3')"></button></td>
+			    			<td id="2B4"><button class="playButton" onclick="playGame('B4')"></button></td>
+			    			<td id="2B5"><button class="playButton" onclick="playGame('B5')"></button></td>
+			    			<td id="2B6"><button class="playButton" onclick="playGame('B6')"></button></td>
+			    			<td id="2B7"><button class="playButton" onclick="playGame('B7')"></button></td>
+			    			<td id="2B8"><button class="playButton" onclick="playGame('B8')"></button></td>
+			    			<td id="2B9"><button class="playButton" onclick="playGame('B9')"></button></td>
+			    			<td id="2B10"><button class="playButton" onclick="playGame('B10')"></button></td>
+			    		</tr>
+			    		<tr id="2Row3">
+			    			<th>C</th>
+			    			<td id="2C1"><button class="playButton" onclick="playGame('C1')"></button></td>
+			    			<td id="2C2"><button class="playButton" onclick="playGame('C2')"></button></td>
+			    			<td id="2C3"><button class="playButton" onclick="playGame('C3')"></button></td>
+			    			<td id="2C4"><button class="playButton" onclick="playGame('C4')"></button></td>
+			    			<td id="2C5"><button class="playButton" onclick="playGame('C5')"></button></td>
+			    			<td id="2C6"><button class="playButton" onclick="playGame('C6')"></button></td>
+			    			<td id="2C7"><button class="playButton" onclick="playGame('C7')"></button></td>
+			    			<td id="2C8"><button class="playButton" onclick="playGame('C8')"></button></td>
+			    			<td id="2C9"><button class="playButton" onclick="playGame('C9')"></button></td>
+			    			<td id="2C10"><button class="playButton" onclick="playGame('C10')"></button></td>
+			    		</tr>
+			    		<tr id="2Row4">
+			    			<th>D</th>
+			    			<td id="2D1"><button class="playButton" onclick="playGame('D1')"></button></td>
+			    			<td id="2D2"><button class="playButton" onclick="playGame('D2')"></button></td>
+			    			<td id="2D3"><button class="playButton" onclick="playGame('D3')"></button></td>
+			    			<td id="2D4"><button class="playButton" onclick="playGame('D4')"></button></td>
+			    			<td id="2D5"><button class="playButton" onclick="playGame('D5')"></button></td>
+			    			<td id="2D6"><button class="playButton" onclick="playGame('D6')"></button></td>
+			    			<td id="2D7"><button class="playButton" onclick="playGame('D7')"></button></td>
+			    			<td id="2D8"><button class="playButton" onclick="playGame('D8')"></button></td>
+			    			<td id="2D9"><button class="playButton" onclick="playGame('D9')"></button></td>
+			    			<td id="2D10"><button class="playButton" onclick="playGame('D10')"></button></td>
+			    		</tr>
+			    		<tr id="2Row5">
+			    			<th>E</th>
+			    			<td id="2E1"><button class="playButton" onclick="playGame('E1')"></button></td>
+			    			<td id="2E2"><button class="playButton" onclick="playGame('E2')"></button></td>
+			    			<td id="2E3"><button class="playButton" onclick="playGame('E3')"></button></td>
+			    			<td id="2E4"><button class="playButton" onclick="playGame('E4')"></button></td>
+			    			<td id="2E5"><button class="playButton" onclick="playGame('E5')"></button></td>
+			    			<td id="2E6"><button class="playButton" onclick="playGame('E6')"></button></td>
+			    			<td id="2E7"><button class="playButton" onclick="playGame('E7')"></button></td>
+			    			<td id="2E8"><button class="playButton" onclick="playGame('E8')"></button></td>
+			    			<td id="2E9"><button class="playButton" onclick="playGame('E9')"></button></td>
+			    			<td id="2E10"><button class="playButton" onclick="playGame('E10')"></button></td>
+			    		</tr>
+			    		<tr id="2Row6">
+			    			<th>F</th>
+			    			<td id="2F1"><button class="playButton" onclick="playGame('F1')"></button></td>
+			    			<td id="2F2"><button class="playButton" onclick="playGame('F2')"></button></td>
+			    			<td id="2F3"><button class="playButton" onclick="playGame('F3')"></button></td>
+			    			<td id="2F4"><button class="playButton" onclick="playGame('F4')"></button></td>
+			    			<td id="2F5"><button class="playButton" onclick="playGame('F5')"></button></td>
+			    			<td id="2F6"><button class="playButton" onclick="playGame('F6')"></button></td>
+			    			<td id="2F7"><button class="playButton" onclick="playGame('F7')"></button></td>
+			    			<td id="2F8"><button class="playButton" onclick="playGame('F8')"></button></td>
+			    			<td id="2F9"><button class="playButton" onclick="playGame('F9')"></button></td>
+			    			<td id="2F10"><button class="playButton" onclick="playGame('F10')"></button></td>
+			    		</tr>
+			    		<tr id="2Row7">
+			    			<th>G</th>
+			    			<td id="2G1"><button class="playButton" onclick="playGame('G1')"></button></td>
+			    			<td id="2G2"><button class="playButton" onclick="playGame('G2')"></button></td>
+			    			<td id="2G3"><button class="playButton" onclick="playGame('G3')"></button></td>
+			    			<td id="2G4"><button class="playButton" onclick="playGame('G4')"></button></td>
+			    			<td id="2G5"><button class="playButton" onclick="playGame('G5')"></button></td>
+			    			<td id="2G6"><button class="playButton" onclick="playGame('G6')"></button></td>
+			    			<td id="2G7"><button class="playButton" onclick="playGame('G7')"></button></td>
+			    			<td id="2G8"><button class="playButton" onclick="playGame('G8')"></button></td>
+			    			<td id="2G9"><button class="playButton" onclick="playGame('G9')"></button></td>
+			    			<td id="2G10"><button class="playButton" onclick="playGame('G10')"></button></td>
+			    		</tr>
+			    		<tr id="2Row8">
+			    			<th>H</th>
+			    			<td id="2H1"><button class="playButton" onclick="playGame('H1')"></button></td>
+			    			<td id="2H2"><button class="playButton" onclick="playGame('H2')"></button></td>
+			    			<td id="2H3"><button class="playButton" onclick="playGame('H3')"></button></td>
+			    			<td id="2H4"><button class="playButton" onclick="playGame('H4')"></button></td>
+			    			<td id="2H5"><button class="playButton" onclick="playGame('H5')"></button></td>
+			    			<td id="2H6"><button class="playButton" onclick="playGame('H6')"></button></td>
+			    			<td id="2H7"><button class="playButton" onclick="playGame('H7')"></button></td>
+			    			<td id="2H8"><button class="playButton" onclick="playGame('H8')"></button></td>
+			    			<td id="2H9"><button class="playButton" onclick="playGame('H9')"></button></td>
+			    			<td id="2H10"><button class="playButton" onclick="playGame('H10')"></button></td>
+			    		</tr>
+			    		<tr id="2Row9">
+			    			<th>I</th>
+			    			<td id="2I1"><button class="playButton" onclick="playGame('I1')"></button></td>
+			    			<td id="2I2"><button class="playButton" onclick="playGame('I2')"></button></td>
+			    			<td id="2I3"><button class="playButton" onclick="playGame('I3')"></button></td>
+			    			<td id="2I4"><button class="playButton" onclick="playGame('I4')"></button></td>
+			    			<td id="2I5"><button class="playButton" onclick="playGame('I5')"></button></td>
+			    			<td id="2I6"><button class="playButton" onclick="playGame('I6')"></button></td>
+			    			<td id="2I7"><button class="playButton" onclick="playGame('I7')"></button></td>
+			    			<td id="2I8"><button class="playButton" onclick="playGame('I8')"></button></td>
+			    			<td id="2I9"><button class="playButton" onclick="playGame('I9')"></button></td>
+			    			<td id="2I10"><button class="playButton" onclick="playGame('I10')"></button></td>
+			    		</tr>
+			    		<tr id="2Row10">
+			    			<th>J</th>
+			    			<td id="2J1"><button class="playButton" onclick="playGame('J1')"></button></td>
+			    			<td id="2J2"><button class="playButton" onclick="playGame('J2')"></button></td>
+			    			<td id="2J3"><button class="playButton" onclick="playGame('J3')"></button></td>
+			    			<td id="2J4"><button class="playButton" onclick="playGame('J4')"></button></td>
+			    			<td id="2J5"><button class="playButton" onclick="playGame('J5')"></button></td>
+			    			<td id="2J6"><button class="playButton" onclick="playGame('J6')"></button></td>
+			    			<td id="2J7"><button class="playButton" onclick="playGame('J7')"></button></td>
+			    			<td id="2J8"><button class="playButton" onclick="playGame('J8')"></button></td>
+			    			<td id="2J9"><button class="playButton" onclick="playGame('J9')"></button></td>
+			    			<td id="2J10"><button class="playButton" onclick="playGame('J10')"></button></td>
+			    		</tr>
+			    	</table>
+			    	<table id="gameBoard4">
+			    		<tr id="4Row0">
+			    			<th></th>
+			    			<th>1</th>
+			    			<th>2</th>
+			    			<th>3</th>
+			    			<th>4</th>
+			    			<th>5</th>
+			    			<th>6</th>
+			    			<th>7</th>
+			    			<th>8</th>
+			    			<th>9</th>
+			    			<th>10</th>
+			    		</tr>
+			    		<tr id="4Row1">
+			    			<th>A</th>
+			    			<td id="4A1"><button class="playButton" onclick="playGame('A1')"></button></td>
+			    			<td id="4A2"><button class="playButton" onclick="playGame('A2')"></button></td>
+			    			<td id="4A3"><button class="playButton" onclick="playGame('A3')"></button></td>
+			    			<td id="4A4"><button class="playButton" onclick="playGame('A4')"></button></td>
+			    			<td id="4A5"><button class="playButton" onclick="playGame('A5')"></button></td>
+			    			<td id="4A6"><button class="playButton" onclick="playGame('A6')"></button></td>
+			    			<td id="4A7"><button class="playButton" onclick="playGame('A7')"></button></td>
+			    			<td id="4A8"><button class="playButton" onclick="playGame('A8')"></button></td>
+			    			<td id="4A9"><button class="playButton" onclick="playGame('A9')"></button></td>
+			    			<td id="4A10"><button class="playButton" onclick="playGame('A10')"></button></td>
+			    		</tr>
+			    		<tr id="4Row2">
+			    			<th>B</th>
+							<td id="4B1"><button class="playButton" onclick="playGame('B1')"></button></td>
+			    			<td id="4B2"><button class="playButton" onclick="playGame('B2')"></button></td>
+			    			<td id="4B3"><button class="playButton" onclick="playGame('B3')"></button></td>
+			    			<td id="4B4"><button class="playButton" onclick="playGame('B4')"></button></td>
+			    			<td id="4B5"><button class="playButton" onclick="playGame('B5')"></button></td>
+			    			<td id="4B6"><button class="playButton" onclick="playGame('B6')"></button></td>
+			    			<td id="4B7"><button class="playButton" onclick="playGame('B7')"></button></td>
+			    			<td id="4B8"><button class="playButton" onclick="playGame('B8')"></button></td>
+			    			<td id="4B9"><button class="playButton" onclick="playGame('B9')"></button></td>
+			    			<td id="4B10"><button class="playButton" onclick="playGame('B10')"></button></td>
+			    		</tr>
+			    		<tr id="4Row3">
+			    			<th>C</th>
+			    			<td id="4C1"><button class="playButton" onclick="playGame('C1')"></button></td>
+			    			<td id="4C2"><button class="playButton" onclick="playGame('C2')"></button></td>
+			    			<td id="4C3"><button class="playButton" onclick="playGame('C3')"></button></td>
+			    			<td id="4C4"><button class="playButton" onclick="playGame('C4')"></button></td>
+			    			<td id="4C5"><button class="playButton" onclick="playGame('C5')"></button></td>
+			    			<td id="4C6"><button class="playButton" onclick="playGame('C6')"></button></td>
+			    			<td id="4C7"><button class="playButton" onclick="playGame('C7')"></button></td>
+			    			<td id="4C8"><button class="playButton" onclick="playGame('C8')"></button></td>
+			    			<td id="4C9"><button class="playButton" onclick="playGame('C9')"></button></td>
+			    			<td id="4C10"><button class="playButton" onclick="playGame('C10')"></button></td>
+			    		</tr>
+			    		<tr id="4Row4">
+			    			<th>D</th>
+			    			<td id="4D1"><button class="playButton" onclick="playGame('D1')"></button></td>
+			    			<td id="4D2"><button class="playButton" onclick="playGame('D2')"></button></td>
+			    			<td id="4D3"><button class="playButton" onclick="playGame('D3')"></button></td>
+			    			<td id="4D4"><button class="playButton" onclick="playGame('D4')"></button></td>
+			    			<td id="4D5"><button class="playButton" onclick="playGame('D5')"></button></td>
+			    			<td id="4D6"><button class="playButton" onclick="playGame('D6')"></button></td>
+			    			<td id="4D7"><button class="playButton" onclick="playGame('D7')"></button></td>
+			    			<td id="4D8"><button class="playButton" onclick="playGame('D8')"></button></td>
+			    			<td id="4D9"><button class="playButton" onclick="playGame('D9')"></button></td>
+			    			<td id="4D10"><button class="playButton" onclick="playGame('D10')"></button></td>
+			    		</tr>
+			    		<tr id="4Row5">
+			    			<th>E</th>
+			    			<td id="4E1"><button class="playButton" onclick="playGame('E1')"></button></td>
+			    			<td id="4E2"><button class="playButton" onclick="playGame('E2')"></button></td>
+			    			<td id="4E3"><button class="playButton" onclick="playGame('E3')"></button></td>
+			    			<td id="4E4"><button class="playButton" onclick="playGame('E4')"></button></td>
+			    			<td id="4E5"><button class="playButton" onclick="playGame('E5')"></button></td>
+			    			<td id="4E6"><button class="playButton" onclick="playGame('E6')"></button></td>
+			    			<td id="4E7"><button class="playButton" onclick="playGame('E7')"></button></td>
+			    			<td id="4E8"><button class="playButton" onclick="playGame('E8')"></button></td>
+			    			<td id="4E9"><button class="playButton" onclick="playGame('E9')"></button></td>
+			    			<td id="4E10"><button class="playButton" onclick="playGame('E10')"></button></td>
+			    		</tr>
+			    		<tr id="4Row6">
+			    			<th>F</th>
+			    			<td id="4F1"><button class="playButton" onclick="playGame('F1')"></button></td>
+			    			<td id="4F2"><button class="playButton" onclick="playGame('F2')"></button></td>
+			    			<td id="4F3"><button class="playButton" onclick="playGame('F3')"></button></td>
+			    			<td id="4F4"><button class="playButton" onclick="playGame('F4')"></button></td>
+			    			<td id="4F5"><button class="playButton" onclick="playGame('F5')"></button></td>
+			    			<td id="4F6"><button class="playButton" onclick="playGame('F6')"></button></td>
+			    			<td id="4F7"><button class="playButton" onclick="playGame('F7')"></button></td>
+			    			<td id="4F8"><button class="playButton" onclick="playGame('F8')"></button></td>
+			    			<td id="4F9"><button class="playButton" onclick="playGame('F9')"></button></td>
+			    			<td id="4F10"><button class="playButton" onclick="playGame('F10')"></button></td>
+			    		</tr>
+			    		<tr id="4Row7">
+			    			<th>G</th>
+			    			<td id="4G1"><button class="playButton" onclick="playGame('G1')"></button></td>
+			    			<td id="4G2"><button class="playButton" onclick="playGame('G2')"></button></td>
+			    			<td id="4G3"><button class="playButton" onclick="playGame('G3')"></button></td>
+			    			<td id="4G4"><button class="playButton" onclick="playGame('G4')"></button></td>
+			    			<td id="4G5"><button class="playButton" onclick="playGame('G5')"></button></td>
+			    			<td id="4G6"><button class="playButton" onclick="playGame('G6')"></button></td>
+			    			<td id="4G7"><button class="playButton" onclick="playGame('G7')"></button></td>
+			    			<td id="4G8"><button class="playButton" onclick="playGame('G8')"></button></td>
+			    			<td id="4G9"><button class="playButton" onclick="playGame('G9')"></button></td>
+			    			<td id="4G10"><button class="playButton" onclick="playGame('G10')"></button></td>
+			    		</tr>
+			    		<tr id="4Row8">
+			    			<th>H</th>
+			    			<td id="4H1"><button class="playButton" onclick="playGame('H1')"></button></td>
+			    			<td id="4H2"><button class="playButton" onclick="playGame('H2')"></button></td>
+			    			<td id="4H3"><button class="playButton" onclick="playGame('H3')"></button></td>
+			    			<td id="4H4"><button class="playButton" onclick="playGame('H4')"></button></td>
+			    			<td id="4H5"><button class="playButton" onclick="playGame('H5')"></button></td>
+			    			<td id="4H6"><button class="playButton" onclick="playGame('H6')"></button></td>
+			    			<td id="4H7"><button class="playButton" onclick="playGame('H7')"></button></td>
+			    			<td id="4H8"><button class="playButton" onclick="playGame('H8')"></button></td>
+			    			<td id="4H9"><button class="playButton" onclick="playGame('H9')"></button></td>
+			    			<td id="4H10"><button class="playButton" onclick="playGame('H10')"></button></td>
+			    		</tr>
+			    		<tr id="4Row9">
+			    			<th>I</th>
+			    			<td id="4I1"><button class="playButton" onclick="playGame('I1')"></button></td>
+			    			<td id="4I2"><button class="playButton" onclick="playGame('I2')"></button></td>
+			    			<td id="4I3"><button class="playButton" onclick="playGame('I3')"></button></td>
+			    			<td id="4I4"><button class="playButton" onclick="playGame('I4')"></button></td>
+			    			<td id="4I5"><button class="playButton" onclick="playGame('I5')"></button></td>
+			    			<td id="4I6"><button class="playButton" onclick="playGame('I6')"></button></td>
+			    			<td id="4I7"><button class="playButton" onclick="playGame('I7')"></button></td>
+			    			<td id="4I8"><button class="playButton" onclick="playGame('I8')"></button></td>
+			    			<td id="4I9"><button class="playButton" onclick="playGame('I9')"></button></td>
+			    			<td id="4I10"><button class="playButton" onclick="playGame('I10')"></button></td>
+			    		</tr>
+			    		<tr id="4Row10">
+			    			<th>J</th>
+			    			<td id="4J1"><button class="playButton" onclick="playGame('J1')"></button></td>
+			    			<td id="4J2"><button class="playButton" onclick="playGame('J2')"></button></td>
+			    			<td id="4J3"><button class="playButton" onclick="playGame('J3')"></button></td>
+			    			<td id="4J4"><button class="playButton" onclick="playGame('J4')"></button></td>
+			    			<td id="4J5"><button class="playButton" onclick="playGame('J5')"></button></td>
+			    			<td id="4J6"><button class="playButton" onclick="playGame('J6')"></button></td>
+			    			<td id="4J7"><button class="playButton" onclick="playGame('J7')"></button></td>
+			    			<td id="4J8"><button class="playButton" onclick="playGame('J8')"></button></td>
+			    			<td id="4J9"><button class="playButton" onclick="playGame('J9')"></button></td>
+			    			<td id="4J10"><button class="playButton" onclick="playGame('J10')"></button></td>
+			    		</tr>
+			    	</table>
+		    	</th>
+		    	<th id="leadNames" rowspan="3"> 
+		    		<table id="leadTable">
+		    			<tr><th id="n0">#1: </th></tr>
+		    			<tr><th id="n1">#2: </th></tr>
+		    			<tr><th id="n2">#3: </th></tr>
+		    			<tr><th id="n3">#4: </th></tr>
+		    			<tr><th id="n4">#5: </th></tr>
+		    			<tr><th id="n5">#6: </th></tr>
+		    			<tr><th id="n6">#7: </th></tr>
+		    			<tr><th id="n7">#8: </th></tr>
+		    			<tr><th id="n8">#9: </th></tr>
+		    			<tr><th id="n9">#10: </th></tr>
+		    		</table>
+		    	</th>
+
+			</tr>
+			<tr> 
+  				<th> Your Board </th>
+  			</tr>
+  			<tr>
+  				<th>
+			    	<table id="gameBoard1">
+			    		<tr id="1Row0">
+			    			<th></th>
+			    			<th>1</th>
+			    			<th>2</th>
+			    			<th>3</th>
+			    			<th>4</th>
+			    			<th>5</th>
+			    			<th>6</th>
+			    			<th>7</th>
+			    			<th>8</th>
+			    			<th>9</th>
+			    			<th>10</th>
+			    		</tr>
+			    		<tr id="1Row1">
+			    			<th>A</th>
+			    			<td id="1A1"></td>
+			    			<td id="1A2"></td>
+			    			<td id="1A3"></td>
+			    			<td id="1A4"></td>
+			    			<td id="1A5"></td>
+			    			<td id="1A6"></td>
+			    			<td id="1A7"></td>
+			    			<td id="1A8"></td>
+			    			<td id="1A9"></td>
+			    			<td id="1A10"></td>
+			    		</tr>
+			    		<tr id="1Row2">
+			    			<th>B</th>
+							<td id="1B1"></td>
+			    			<td id="1B2"></td>
+			    			<td id="1B3"></td>
+			    			<td id="1B4"></td>
+			    			<td id="1B5"></td>
+			    			<td id="1B6"></td>
+			    			<td id="1B7"></td>
+			    			<td id="1B8"></td>
+			    			<td id="1B9"></td>
+			    			<td id="1B10"></td>
+			    		</tr>
+			    		<tr id="1Row3">
+			    			<th>C</th>
+			    			<td id="1C1"></td>
+			    			<td id="1C2"></td>
+			    			<td id="1C3"></td>
+			    			<td id="1C4"></td>
+			    			<td id="1C5"></td>
+			    			<td id="1C6"></td>
+			    			<td id="1C7"></td>
+			    			<td id="1C8"></td>
+			    			<td id="1C9"></td>
+			    			<td id="1C10"></td>
+			    		</tr>
+			    		<tr id="1Row4">
+			    			<th>D</th>
+			    			<td id="1D1"></td>
+			    			<td id="1D2"></td>
+			    			<td id="1D3"></td>
+			    			<td id="1D4"></td>
+			    			<td id="1D5"></td>
+			    			<td id="1D6"></td>
+			    			<td id="1D7"></td>
+			    			<td id="1D8"></td>
+			    			<td id="1D9"></td>
+			    			<td id="1D10"></td>
+			    		</tr>
+			    		<tr id="1Row5">
+			    			<th>E</th>
+			    			<td id="1E1"></td>
+			    			<td id="1E2"></td>
+			    			<td id="1E3"></td>
+			    			<td id="1E4"></td>
+			    			<td id="1E5"></td>
+			    			<td id="1E6"></td>
+			    			<td id="1E7"></td>
+			    			<td id="1E8"></td>
+			    			<td id="1E9"></td>
+			    			<td id="1E10"></td>
+			    		</tr>
+			    		<tr id="1Row6">
+			    			<th>F</th>
+			    			<td id="1F1"></td>
+			    			<td id="1F2"></td>
+			    			<td id="1F3"></td>
+			    			<td id="1F4"></td>
+			    			<td id="1F5"></td>
+			    			<td id="1F6"></td>
+			    			<td id="1F7"></td>
+			    			<td id="1F8"></td>
+			    			<td id="1F9"></td>
+			    			<td id="1F10"></td>
+			    		</tr>
+			    		<tr id="1Row7">
+			    			<th>G</th>
+			    			<td id="1G1"></td>
+			    			<td id="1G2"></td>
+			    			<td id="1G3"></td>
+			    			<td id="1G4"></td>
+			    			<td id="1G5"></td>
+			    			<td id="1G6"></td>
+			    			<td id="1G7"></td>
+			    			<td id="1G8"></td>
+			    			<td id="1G9"></td>
+			    			<td id="1G10"></td>
+			    		</tr>
+			    		<tr id="1Row8">
+			    			<th>H</th>
+			    			<td id="1H1"></td>
+			    			<td id="1H2"></td>
+			    			<td id="1H3"></td>
+			    			<td id="1H4"></td>
+			    			<td id="1H5"></td>
+			    			<td id="1H6"></td>
+			    			<td id="1H7"></td>
+			    			<td id="1H8"></td>
+			    			<td id="1H9"></td>
+			    			<td id="1H10"></td>
+			    		</tr>
+			    		<tr id="1Row9">
+			    			<th>I</th>
+			    			<td id="1I1"></td>
+			    			<td id="1I2"></td>
+			    			<td id="1I3"></td>
+			    			<td id="1I4"></td>
+			    			<td id="1I5"></td>
+			    			<td id="1I6"></td>
+			    			<td id="1I7"></td>
+			    			<td id="1I8"></td>
+			    			<td id="1I9"></td>
+			    			<td id="1I10"></td>
+			    		</tr>
+			    		<tr id="1Row10">
+			    			<th>J</th>
+			    			<td id="1J1"></td>
+			    			<td id="1J2"></td>
+			    			<td id="1J3"></td>
+			    			<td id="1J4"></td>
+			    			<td id="1J5"></td>
+			    			<td id="1J6"></td>
+			    			<td id="1J7"></td>
+			    			<td id="1J8"></td>
+			    			<td id="1J9"></td>
+			    			<td id="1J10"></td>
+			    		</tr>
+			    	</table>
+			    	<table id="gameBoard3">
+			    		<tr id="Row0">
+			    			<th></th>
+			    			<th>1</th>
+			    			<th>2</th>
+			    			<th>3</th>
+			    			<th>4</th>
+			    			<th>5</th>
+			    			<th>6</th>
+			    			<th>7</th>
+			    			<th>8</th>
+			    			<th>9</th>
+			    			<th>10</th>
+			    		</tr>
+			    		<tr id="3Row1">
+			    			<th>A</th>
+			    			<td id="3A1"></td>
+			    			<td id="3A2"></td>
+			    			<td id="3A3"></td>
+			    			<td id="3A4"></td>
+			    			<td id="3A5"></td>
+			    			<td id="3A6"></td>
+			    			<td id="3A7"></td>
+			    			<td id="3A8"></td>
+			    			<td id="3A9"></td>
+			    			<td id="3A10"></td>
+			    		</tr>
+			    		<tr id="3Row2">
+			    			<th>B</th>
+							<td id="3B1"></td>
+			    			<td id="3B2"></td>
+			    			<td id="3B3"></td>
+			    			<td id="3B4"></td>
+			    			<td id="3B5"></td>
+			    			<td id="3B6"></td>
+			    			<td id="3B7"></td>
+			    			<td id="3B8"></td>
+			    			<td id="3B9"></td>
+			    			<td id="3B10"></td>
+			    		</tr>
+			    		<tr id="3Row3">
+			    			<th>C</th>
+			    			<td id="3C1"></td>
+			    			<td id="3C2"></td>
+			    			<td id="3C3"></td>
+			    			<td id="3C4"></td>
+			    			<td id="3C5"></td>
+			    			<td id="3C6"></td>
+			    			<td id="3C7"></td>
+			    			<td id="3C8"></td>
+			    			<td id="3C9"></td>
+			    			<td id="3C10"></td>
+			    		</tr>
+			    		<tr id="3Row4">
+			    			<th>D</th>
+			    			<td id="3D1"></td>
+			    			<td id="3D2"></td>
+			    			<td id="3D3"></td>
+			    			<td id="3D4"></td>
+			    			<td id="3D5"></td>
+			    			<td id="3D6"></td>
+			    			<td id="3D7"></td>
+			    			<td id="3D8"></td>
+			    			<td id="3D9"></td>
+			    			<td id="3D10"></td>
+			    		</tr>
+			    		<tr id="3Row5">
+			    			<th>E</th>
+			    			<td id="3E1"></td>
+			    			<td id="3E2"></td>
+			    			<td id="3E3"></td>
+			    			<td id="3E4"></td>
+			    			<td id="3E5"></td>
+			    			<td id="3E6"></td>
+			    			<td id="3E7"></td>
+			    			<td id="3E8"></td>
+			    			<td id="3E9"></td>
+			    			<td id="3E10"></td>
+			    		</tr>
+			    		<tr id="3Row6">
+			    			<th>F</th>
+			    			<td id="3F1"></td>
+			    			<td id="3F2"></td>
+			    			<td id="3F3"></td>
+			    			<td id="3F4"></td>
+			    			<td id="3F5"></td>
+			    			<td id="3F6"></td>
+			    			<td id="3F7"></td>
+			    			<td id="3F8"></td>
+			    			<td id="3F9"></td>
+			    			<td id="3F10"></td>
+			    		</tr>
+			    		<tr id="3Row7">
+			    			<th>G</th>
+			    			<td id="3G1"></td>
+			    			<td id="3G2"></td>
+			    			<td id="3G3"></td>
+			    			<td id="3G4"></td>
+			    			<td id="3G5"></td>
+			    			<td id="3G6"></td>
+			    			<td id="3G7"></td>
+			    			<td id="3G8"></td>
+			    			<td id="3G9"></td>
+			    			<td id="3G10"></td>
+			    		</tr>
+			    		<tr id="4Row8">
+			    			<th>H</th>
+			    			<td id="3H1"></td>
+			    			<td id="3H2"></td>
+			    			<td id="3H3"></td>
+			    			<td id="3H4"></td>
+			    			<td id="3H5"></td>
+			    			<td id="3H6"></td>
+			    			<td id="3H7"></td>
+			    			<td id="3H8"></td>
+			    			<td id="3H9"></td>
+			    			<td id="3H10"></td>
+			    		</tr>
+			    		<tr id="3Row9">
+			    			<th>I</th>
+			    			<td id="3I1"></td>
+			    			<td id="3I2"></td>
+			    			<td id="3I3"></td>
+			    			<td id="3I4"></td>
+			    			<td id="3I5"></td>
+			    			<td id="3I6"></td>
+			    			<td id="3I7"></td>
+			    			<td id="3I8"></td>
+			    			<td id="3I9"></td>
+			    			<td id="3I10"></td>
+			    		</tr>
+			    		<tr id="3Row10">
+			    			<th>J</th>
+			    			<td id="3J1"></td>
+			    			<td id="3J2"></td>
+			    			<td id="3J3"></td>
+			    			<td id="3J4"></td>
+			    			<td id="3J5"></td>
+			    			<td id="3J6"></td>
+			    			<td id="3J7"></td>
+			    			<td id="3J8"></td>
+			    			<td id="3J9"></td>
+			    			<td id="3J10"></td>
+			    		</tr>
+			    	</table>
+			    </th>
+			</tr>
+	    </table>
+    	
+
+  	</body>
+</html>

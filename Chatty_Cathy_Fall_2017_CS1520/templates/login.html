@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>Welcome to The Budgeter!</h2>
+    <h3>Please Log in to Continue:</h3>
+
+    {% if error %}<div class="error"><strong>Error:</strong> {{ error }}</div>
+    {% endif %}
+   
+    <form action="" method="post">
+        <dl>
+            <dt>Username:
+                <dd><input type="text" name="username" value="{{ request.form.username }}" /></dd>
+            </dt>
+            <dt>Password:
+                <dd><input type="password" name="password" /></dd>
+            </dt>
+        </dl>
+        <div><input type="submit" value="Log In" /><div>
+    </form>
+    <br />
+    
+    <form action="/register">
+        <input type="submit" value="Register" />
+    </form>
+
+{% endblock %}

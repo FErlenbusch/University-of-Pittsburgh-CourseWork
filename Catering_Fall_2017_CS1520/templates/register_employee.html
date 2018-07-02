@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+	<h2>Register Employee</h2>
+
+	{% if error %}<div class="error"><strong>Error:</strong> {{ error }}</div>
+	{% endif %}
+	
+	<form action="" method="post">
+		<dl>
+			<dt>Username:
+				<dd><input type="text" name="username" size="30" value="{{ request.form.username }}"> </dd>
+			</dt>
+			<dt>First Name:
+				<dd><input type="text" name="first" size="15" value="{{ request.form.first }}"></dd>
+			</dt>
+			<dt>Last Name:
+				<dd><input type="text" name="last" size="15" value="{{ request.form.last }}"></dd>
+			</dt>
+			<dt>Password:
+				<dd><input type="password" name="password" size="30"></dd>
+			</dt>
+			<dt>Password <small>(repeat)</small>:
+				<dd><input type="password" name="password2" size="30"></dd>
+			</dt>
+		</dl>
+		<div><input type="submit" value="Register"></div>
+	</form>
+{% endblock %}
