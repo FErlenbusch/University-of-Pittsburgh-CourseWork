@@ -1,0 +1,51 @@
+
+    /* triggers
+      1) trig_bidTimeUpdate
+      2) trig_updateHighBid
+      3) triggers that resolve concurrency conflicts?
+      4) trig_closeAuctions
+    */
+
+    /* Tasks to implement via functions, procedures, triggers, etc
+      1) browsing products
+      2) searching for product by text
+      3) putting products for auction
+      4) bidding on products
+      5) selling products
+      6) providing suggestions to customer
+      7) new customer registration
+      8) update system Date
+      9) product statistics
+      10) other statistics to generate
+      11) verify login name and password
+      12) close auctions when system time is updated
+    */
+
+    /* functions
+      1) func_productCount: counts the number of products sold in the past x months for
+      a specific categories c, where x and c are the function’s inputs.
+      2) func_bidCount: counts the number of bids a specific user u has placed in the past
+      x months, where x and u are the function’s inputs.
+      3) func_buyingAmount: calculates the total dollar amount a specific user u has spent
+      in the past x months, where x and u are the function’s inputs.
+    */
+
+    /* procedures
+      1) proc_putProduct - a stored procedure used to implement putting products for auction_id
+      2)
+    */
+
+    /* Views
+      1) Administrator
+      2) User
+    */
+
+    /* Files Needed:
+    1) schema.sql the script to create the tables.
+    2) trigger.sql the script to create other database objects, e.g., trigger, functions, procedures, etc.
+    3) insert.sql */
+
+    /*
+      Browsing products
+
+    */
